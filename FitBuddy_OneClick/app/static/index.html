@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitBuddy AI</title><link rel="stylesheet" href="/style.css"></head><body>
+<nav><b>✦ FitBuddy <i>AI</i></b><a href="#how">How it works</a></nav>
+<main>
+<section class="hero"><div><small>AI-POWERED • WELLNESS PLANNER</small><h1>Build a routine.<br><span>Feel your progress.</span></h1>
+<p>Create a simple 7-day activity plan based on your experience, goal and schedule.</p><div class="ticks">✓ Beginner friendly　 ✓ Flexible schedule　 ✓ Recovery focused</div></div>
+<div class="card"><h2>Tell us about you</h2><p>We’ll build your starter plan.</p><form id="form">
+<label>Name<input id="name" required placeholder="Your name"></label>
+<div class="two"><label>Age<input id="age" type="number" min="13" max="100" required></label>
+<label>Experience<select id="activity"><option>Beginner</option><option>Intermediate</option><option>Active</option></select></label></div>
+<label>Goal<select id="goal"><option>General fitness</option><option>Build strength</option><option>Improve mobility</option><option>Improve stamina</option></select></label>
+<label>Active days<select id="days"><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option><option value="6">6</option><option value="7">7</option></select></label>
+<button id="go">Generate My Plan →</button><div id="err"></div></form></div></section>
+<section id="result" class="hidden"><div class="resultHead"><div><small>YOUR PLAN</small><h2 id="summary"></h2></div><button class="secondary" onclick="location.reload()">Create another</button></div>
+<div id="days" class="days"></div><div class="infos"><article><small>RECOVERY</small><p id="recovery"></p></article><article><small>SAFETY</small><p id="safety"></p></article></div>
+<div class="card feedback"><h3>Want a different plan?</h3><div class="feed"><input id="fb" placeholder="Example: make it easier and more focused on mobility"><button id="regen">Regenerate</button></div><div id="ferr"></div></div></section>
+<section id="how" class="how"><div><b>01</b><h3>Share your basics</h3><p>Experience, goal and schedule.</p></div><div><b>02</b><h3>Get your plan</h3><p>A clear 7-day routine.</p></div><div><b>03</b><h3>Adjust anytime</h3><p>Use feedback to regenerate.</p></div></section>
+</main><footer>FitBuddy AI • General wellness planner • Not medical advice</footer><script src="/app.js"></script></body></html>

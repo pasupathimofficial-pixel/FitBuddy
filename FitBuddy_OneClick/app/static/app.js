@@ -1,0 +1,8 @@
+const $=id=>document.getElementById(id);
+let current=null;
+function data(){return{name:$("name").value.trim(),age:+$("age").value,activity:$("activity").value,goal:$("goal").value,days_per_week:+$("days").value}}
+function esc(x){return String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+async function call(url,body){let r=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});let j=await r.json();if(!r.ok)throw Error(j.detail||"Request failed");return j}
+function render(p){$("summary").textContent=p.summary;$("recovery").textContent=p.recovery;$("safety").textContent=p.safety;$("days").innerHTML=p.days.map(d=>`<article class="day"><small>${esc(d.day)}</small><h3>${esc(d.workout)}</h3><span class="tag">${esc(d.duration)}</span><span class="tag">${esc(d.intensity)}</span><p>${esc(d.notes)}</p></article>`).join("");$("result").classList.remove("hidden");$("result").scrollIntoView({behavior:"smooth"})}
+$("form").onsubmit=async e=>{e.preventDefault();$("err").textContent="";let b=$("go");b.disabled=true;b.textContent="Creating plan...";try{current=data();render(await call("/api/plan",current))}catch(x){$("err").textContent=x.message}finally{b.disabled=false;b.textContent="Generate My Plan →"}};
+$("regen").onclick=async()=>{let f=$("fb").value.trim();if(!f){$("ferr").textContent="Tell me what you want changed.";return}let b=$("regen");b.disabled=true;b.textContent="Regenerating...";try{render(await call("/api/plan/feedback",{d:current,f:{feedback:f}}))}catch(x){$("ferr").textContent=x.message}finally{b.disabled=false;b.textContent="Regenerate"}};
